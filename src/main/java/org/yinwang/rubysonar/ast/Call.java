@@ -78,6 +78,7 @@ public class Call extends Node {
             }
 
             if (fn.id.equals("attr_accessor")) {
+                createAttr(s);
                 return Type.CONT;
             }
         }
@@ -359,6 +360,24 @@ public class Call extends Node {
         return fromType;
     }
 
+    /**
+     * Create attribute based on symbols given to attr_accessor.
+     * @param env
+     */
+    private void createAttr(State env) {
+        for (Node fieldName : args) {
+            Symbol s = (Symbol) fieldName;
+            Type thisType = env.lookupType(Constants.INSTNAME);
+            thisType = thisType != null ? thisType : env.lookupType(Constants.SELFNAME);
+            if (thisType == null) {
+                Analyzer.self.putProblem(this, "Instance variable assignment not within class");
+            } else if (thisType instanceof ModuleType) {
+                thisType.table.insertTagged(s.id, "class", fieldName, Type.UNKNOWN, Binding.Kind.ATTRIBUTE);
+            } else {
+                thisType.table.insert(s.id, fieldName, Type.UNKNOWN, Binding.Kind.ATTRIBUTE);
+            }
+        }
+    }
 
     static boolean missingReturn(@NotNull Type toType) {
         boolean hasNone = false;
