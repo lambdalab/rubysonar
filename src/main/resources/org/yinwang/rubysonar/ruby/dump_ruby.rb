@@ -2,6 +2,7 @@ require 'ripper'
 require 'pp'
 require 'json'
 require 'optparse'
+require 'rdoc'
 
 
 # --------------------- utils ---------------------
@@ -198,6 +199,9 @@ class AstSimplifier
           # insert docstrings for node if any
           if [:module, :class, :def].include?(ret[:type])
             doc = @docs[start_line]
+            converter = RDoc::Markup::ToHTml.new(RDoc::Options.new)
+            doc = converter.convert(doc)
+
             if doc
               ret[:doc] = doc
             end
