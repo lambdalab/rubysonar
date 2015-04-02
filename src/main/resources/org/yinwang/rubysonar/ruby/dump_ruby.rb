@@ -199,10 +199,10 @@ class AstSimplifier
           # insert docstrings for node if any
           if [:module, :class, :def].include?(ret[:type])
             doc = @docs[start_line]
-            converter = RDoc::Markup::ToHtml.new(RDoc::Options.new)
-            doc[:id] = converter.convert(doc[:id])
 
             if doc
+              converter = RDoc::Markup::ToHtml.new(RDoc::Options.new)
+              doc[:id] = converter.convert(doc[:id])
               ret[:doc] = doc
             end
           end
