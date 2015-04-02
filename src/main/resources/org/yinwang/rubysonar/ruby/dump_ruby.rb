@@ -85,7 +85,7 @@ class AstSimplifier
       elsif !accum.empty?
         doc = {
             :type => :string,
-            :id => accum.join('\n'),
+            :id => accum.join("\n"),
         }
         @docs[current_line+1] = doc
         @docs[first_line-1] = doc
@@ -925,4 +925,3 @@ end.parse!
 if ARGV.length > 0
   parse_dump(ARGV[0], ARGV[1], ARGV[2])
 end
-
