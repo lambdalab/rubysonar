@@ -76,9 +76,9 @@ class AstSimplifier
     accum = []
 
     lines.each { |line|
-      matched = line.match('^\s*#\s*(.*)')
+      matched = line.match('^\s*#(\s{0,1})(\s*.*)')
       if matched
-        accum.push(matched[1])
+        accum.push(matched[2])
         if !first_line
           first_line = current_line
         end
