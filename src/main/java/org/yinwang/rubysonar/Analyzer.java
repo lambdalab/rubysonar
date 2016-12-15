@@ -23,7 +23,7 @@ public class Analyzer {
     // global static instance of the analyzer itself
     public static Analyzer self;
 
-    public String sid = _.newSessionId();
+    public String sid = $.newSessionId();
     public String cwd = null;
     public int nCalled = 0;
 
@@ -93,14 +93,14 @@ public class Analyzer {
 
     private void copyModels() {
         URL resource = Thread.currentThread().getContextClassLoader().getResource(MODEL_LOCATION);
-        String dest = _.locateTmp("models");
+        String dest = $.locateTmp("models");
         this.modelDir = dest;
 
         try {
-            _.copyResourcesRecursively(resource, new File(dest));
-            _.msg("copied models to: " + modelDir);
+            $.copyResourcesRecursively(resource, new File(dest));
+            $.msg("copied models to: " + modelDir);
         } catch (Exception e) {
-            _.die("Failed to copy models. Please check permissions of writing to: " + dest);
+            $.die("Failed to copy models. Please check permissions of writing to: " + dest);
         }
         addPath(dest);
     }
@@ -108,7 +108,7 @@ public class Analyzer {
 
     // main entry to the analyzer
     public void analyze(String path) {
-        String upath = _.unifyPath(path);
+        String upath = $.unifyPath(path);
         File f = new File(upath);
         projectDir = f.isDirectory() ? f.getPath() : f.getParent();
         loadFileRecursive(upath);
@@ -125,7 +125,7 @@ public class Analyzer {
 
     public void setCWD(String cd) {
         if (cd != null) {
-            cwd = _.unifyPath(cd);
+            cwd = $.unifyPath(cd);
         }
     }
 
@@ -138,7 +138,7 @@ public class Analyzer {
 
 
     public void addPath(String p) {
-        path.add(_.unifyPath(p));
+        path.add($.unifyPath(p));
     }
 
 
@@ -285,7 +285,7 @@ public class Analyzer {
 
     @Nullable
     public Type loadFile(String path) {
-        path = _.unifyPath(path);
+        path = $.unifyPath(path);
         File f = new File(path);
 
         if (!f.canRead()) {
@@ -334,10 +334,10 @@ public class Analyzer {
             }
             System.gc();
             if(e instanceof OutOfMemoryError) {
-                _.msg("Skiping for memory size limit: " + file);
+                $.msg("Skiping for memory size limit: " + file);
             }
             if(e instanceof StackOverflowError) {
-                _.msg("Skiping for stack size limit: " + file);
+                $.msg("Skiping for stack size limit: " + file);
             }
             return null;
         }
@@ -345,13 +345,13 @@ public class Analyzer {
 
 
     private void createCacheDir() {
-        cacheDir = _.makePathString(_.getSystemTempDir(), "rubysonar", "ast_cache");
+        cacheDir = $.makePathString($.getSystemTempDir(), "rubysonar", "ast_cache");
         File f = new File(cacheDir);
-        _.msg("AST cache is at: " + cacheDir);
+        $.msg("AST cache is at: " + cacheDir);
 
         if (!f.exists()) {
             if (!f.mkdirs()) {
-                _.die("Failed to create tmp directory: " + cacheDir +
+                $.die("Failed to create tmp directory: " + cacheDir +
                         ".Please check permissions");
             }
         }
@@ -376,7 +376,7 @@ public class Analyzer {
         List<String> loadPath = getLoadPath();
 
         for (String p : loadPath) {
-            String trial = _.makePathString(p, headName + suffix);
+            String trial = $.makePathString(p, headName + suffix);
             if (new File(trial).exists()) {
                 return loadFile(trial);
             }
@@ -425,8 +425,8 @@ public class Analyzer {
 
 
     public void finish() {
-        _.msg("\nFinished loading files. " + nCalled + " functions were called.");
-        _.msg("Analyzing uncalled functions");
+        $.msg("\nFinished loading files. " + nCalled + " functions were called.");
+        $.msg("Analyzing uncalled functions");
         applyUncalled();
 
         // mark unused variables
@@ -440,7 +440,7 @@ public class Analyzer {
             }
         }
 
-        _.msg(getAnalysisSummary());
+        $.msg(getAnalysisSummary());
     }
 
 
@@ -478,9 +478,9 @@ public class Analyzer {
     @NotNull
     public String getAnalysisSummary() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\n" + _.banner("analysis summary"));
+        sb.append("\n" + $.banner("analysis summary"));
 
-        String duration = _.formatTime(System.currentTimeMillis() - stats.getInt("startTime"));
+        String duration = $.formatTime(System.currentTimeMillis() - stats.getInt("startTime"));
         sb.append("\n- total time: " + duration);
         sb.append("\n- modules loaded: " + loadedFiles.size());
         sb.append("\n- semantic problems: " + semanticErrors.size());
@@ -501,8 +501,8 @@ public class Analyzer {
         long nUnresolved = this.unresolved.size();
         sb.append("\n- resolved names: " + nResolved);
         sb.append("\n- unresolved names: " + nUnresolved);
-        sb.append("\n- name resolve rate: " + _.percent(nResolved, nResolved + nUnresolved));
-        sb.append("\n" + _.getGCStats());
+        sb.append("\n- name resolve rate: " + $.percent(nResolved, nResolved + nUnresolved));
+        sb.append("\n" + $.getGCStats());
 
         return sb.toString();
     }

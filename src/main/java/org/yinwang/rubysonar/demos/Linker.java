@@ -44,7 +44,7 @@ class Linker {
 
 
     public void findLinks(@NotNull Analyzer analyzer) {
-        _.msg("Adding xref links");
+        $.msg("Adding xref links");
         Progress progress = new Progress(analyzer.getAllBindings().size(), 50);
 
         int nMethods = 0;
@@ -66,10 +66,10 @@ class Linker {
             progress.tick();
         }
 
-        _.msg("found: " + nMethods + " methods, " + nFunc + " funcs, " + nClass + " classes");
+        $.msg("found: " + nMethods + " methods, " + nFunc + " funcs, " + nClass + " classes");
 
         // highlight definitions
-        _.msg("\nAdding ref links");
+        $.msg("\nAdding ref links");
         progress = new Progress(analyzer.getReferences().size(), 50);
 
         for (Entry<Node, List<Binding>> e : analyzer.getReferences().entrySet()) {
@@ -146,7 +146,7 @@ class Linker {
             for (Binding b : bindings) {
                 typings.add(b.type.toString());
             }
-            link.message = _.joinWithSep(typings, " | ", "{", "}");
+            link.message = $.joinWithSep(typings, " | ", "{", "}");
 
             // Currently jump to the first binding only. Should change to have a
             // hover menu or something later.
@@ -180,7 +180,7 @@ class Linker {
             for (Binding b : bindings) {
                 typings.add(b.type.toString());
             }
-            link.message = _.joinWithSep(typings, " | ", "{", "}");
+            link.message = $.joinWithSep(typings, " | ", "{", "}");
 
             link.highlight = new ArrayList<>();
             for (Binding b : bindings) {
@@ -256,7 +256,7 @@ class Linker {
         if (destPath.startsWith(rootPath)) {
             String relpath;
             if (filename != null) {
-                relpath = _.relPath(filename, destPath);
+                relpath = $.relPath(filename, destPath);
             } else {
                 relpath = destPath;
             }

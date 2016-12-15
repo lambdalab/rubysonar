@@ -12,10 +12,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class Parser {
@@ -35,14 +32,14 @@ public class Parser {
 
 
     public Parser() {
-        exchangeFile = _.locateTmp("json");
-        endMark = _.locateTmp("end");
-        jsonizer = _.locateTmp("dump_ruby");
-        parserLog = _.locateTmp("parser_log");
+        exchangeFile = $.locateTmp("json");
+        endMark = $.locateTmp("end");
+        jsonizer = $.locateTmp("dump_ruby");
+        parserLog = $.locateTmp("parser_log");
 
         startRubyProcesses();
         if (rubyProcess != null) {
-            _.msg("started: " + RUBY_EXE);
+            $.msg("started: " + RUBY_EXE);
         }
     }
 
@@ -56,7 +53,7 @@ public class Parser {
         rubyProcess = startInterpreter(RUBY_EXE);
 
         if (rubyProcess == null) {
-            _.die("You don't seem to have ruby on PATH");
+            $.die("You don't seem to have ruby on PATH");
         }
     }
 
@@ -93,7 +90,12 @@ public class Parser {
 
         if (type.equals("module")) {
             Node name = convert(map.get("name"));
-            Block body = (Block) convert(map.get("body"));
+            Node body = convert(map.get("body"));
+            if (!(body instanceof Block)) {
+                $.msg("strange convert for file: " + body.file + " at " + body.start);
+                body = new Block(Arrays.asList(body), body.file, body.start, body.end);
+            }
+
 
             if (name instanceof Name) {
                 String id = ((Name) name).id;
@@ -102,7 +104,7 @@ public class Parser {
                 }
             }
             Str docstring = (Str) convert(map.get("doc"));
-            return new Module(name, body, docstring, file, start, end);
+            return new Module(name, (Block)body, docstring, file, start, end);
         }
 
         if (type.equals("block")) {
@@ -444,7 +446,7 @@ public class Parser {
             return new RbFloat(n, file, start, end);
         }
 
-        _.die("[please report parser bug]: unexpected ast node: " + type);
+        $.die("[please report parser bug]: unexpected ast node: " + type);
         return null;
     }
 
@@ -459,7 +461,7 @@ public class Parser {
 
             for (Object x : (List) in) {
                 if (!(x instanceof Map)) {
-                    _.die("not a map: " + x);
+                    $.die("not a map: " + x);
                 }
             }
 
@@ -581,7 +583,7 @@ public class Parser {
             return Op.Defined;
         }
 
-        _.die("illegal operator: " + name);
+        $.die("illegal operator: " + name);
         return null;
     }
 
@@ -602,9 +604,9 @@ public class Parser {
                     Thread.currentThread()
                             .getContextClassLoader()
                             .getResourceAsStream(dumpRubyResource);
-            jsonizeStr = _.readWholeStream(jsonize);
+            jsonizeStr = $.readWholeStream(jsonize);
         } catch (Exception e) {
-            _.die("Failed to open resource file:" + dumpRubyResource);
+            $.die("Failed to open resource file:" + dumpRubyResource);
             return null;
         }
 
@@ -613,7 +615,7 @@ public class Parser {
             fw.write(jsonizeStr);
             fw.close();
         } catch (Exception e) {
-            _.die("Failed to write into: " + jsonizer);
+            $.die("Failed to write into: " + jsonizer);
             return null;
         }
 
@@ -625,12 +627,12 @@ public class Parser {
             builder.environment().remove("RUBYLIB");
             p = builder.start();
         } catch (Exception e) {
-            _.die("Failed to start irb");
+            $.die("Failed to start irb");
             return null;
         }
 
         if (!sendCommand("load '" + jsonizer + "'", p)) {
-            _.die("Failed to load jsonizer, please report bug");
+            $.die("Failed to load jsonizer, please report bug");
             p.destroy();
             return null;
         }
@@ -660,9 +662,9 @@ public class Parser {
 
         cleanTemp();
 
-        String s1 = _.escapeWindowsPath(filename);
-        String s2 = _.escapeWindowsPath(exchangeFile);
-        String s3 = _.escapeWindowsPath(endMark);
+        String s1 = $.escapeWindowsPath(filename);
+        String s2 = $.escapeWindowsPath(exchangeFile);
+        String s3 = $.escapeWindowsPath(endMark);
         String dumpCommand = "parse_dump('" + s1 + "', '" + s2 + "', '" + s3 + "')";
 
         if (!sendCommand(dumpCommand, rubyProcess)) {
@@ -675,7 +677,7 @@ public class Parser {
 
         while (!marker.exists()) {
             if (System.currentTimeMillis() - waitStart > TIMEOUT) {
-                _.msg("\nTimed out while parsing: " + filename);
+                $.msg("\nTimed out while parsing: " + filename);
                 cleanTemp();
                 startRubyProcesses();
                 return null;
@@ -691,7 +693,7 @@ public class Parser {
 
         String json;
         try {
-            json = _.readFile(exchangeFile);
+            json = $.readFile(exchangeFile);
         } catch (Exception e) {
             cleanTemp();
             return null;
@@ -712,7 +714,7 @@ public class Parser {
             writer.flush();
             return true;
         } catch (Exception e) {
-            _.msg("\nFailed to send command to Ruby interpreter: " + cmd);
+            $.msg("\nFailed to send command to Ruby interpreter: " + cmd);
             return false;
         }
     }

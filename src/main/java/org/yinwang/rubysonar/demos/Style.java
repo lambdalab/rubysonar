@@ -2,7 +2,7 @@ package org.yinwang.rubysonar.demos;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.yinwang.rubysonar._;
+import org.yinwang.rubysonar.$;
 
 import java.util.List;
 
@@ -71,8 +71,8 @@ public class Style implements Comparable<Style> {
         return other.type == this.type
                 && other.start == this.start
                 && other.end == this.end
-                && _.same(other.message, this.message)
-                && _.same(other.url, this.url);
+                && $.same(other.message, this.message)
+                && $.same(other.url, this.url);
     }
 
 

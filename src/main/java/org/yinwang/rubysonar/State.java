@@ -460,7 +460,7 @@ public class State {
 
     @NotNull
     public String extendPath(@NotNull String name, String sep) {
-        name = _.mainName(name);
+        name = $.mainName(name);
         if (Name.isSyntheticName(name)) {
             return path;
         } else if (path.equals("")) {

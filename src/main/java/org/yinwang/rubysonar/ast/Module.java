@@ -24,7 +24,7 @@ public class Module extends Node {
         } else if (locator instanceof Name) {
             this.name = (Name) locator;
         } else {
-            _.die("illegal module locator: " + locator);
+            $.die("illegal module locator: " + locator);
         }
         addChildren(locator, body);
     }

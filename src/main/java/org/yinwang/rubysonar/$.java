@@ -23,7 +23,7 @@ import java.util.jar.JarFile;
 /**
  * unsorted utility class
  */
-public class _ {
+public class $ {
 
     public static final Charset UTF_8 = Charset.forName("UTF-8");
 
@@ -96,7 +96,7 @@ public class _ {
             out.print(contents);
             out.flush();
         } catch (Exception e) {
-            _.die("Failed to write: " + path);
+            $.die("Failed to write: " + path);
         } finally {
             if (out != null) {
                 out.close();
@@ -164,7 +164,7 @@ public class _ {
         try {
             jarFile = jarConnection.getJarFile();
         } catch (Exception e) {
-            _.die("Failed to get jar file)");
+            $.die("Failed to get jar file)");
             return;
         }
 
@@ -214,7 +214,7 @@ public class _ {
         try {
             algorithm = MessageDigest.getInstance("SHA-1");
         } catch (Exception e) {
-            _.die("Failed to get SHA, shouldn't happen");
+            $.die("Failed to get SHA, shouldn't happen");
             return "";
         }
 
@@ -527,7 +527,7 @@ public class _ {
         sb.append("\n- total collection time: " + formatTime(gcTime));
 
         Runtime runtime = Runtime.getRuntime();
-        sb.append("\n- total memory: " + _.printMem(runtime.totalMemory()));
+        sb.append("\n- total memory: " + $.printMem(runtime.totalMemory()));
 
         return sb.toString();
     }
