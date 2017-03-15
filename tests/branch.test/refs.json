@@ -1,0 +1,34 @@
+[
+  {
+    "ref": {
+      "name": "x",
+      "file": "branch.rb",
+      "start": 57,
+      "end": 58
+    },
+    "dests": [
+      {
+        "name": "x",
+        "file": "branch.rb",
+        "start": 44,
+        "end": 45
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "y",
+      "file": "branch.rb",
+      "start": 88,
+      "end": 89
+    },
+    "dests": [
+      {
+        "name": "y",
+        "file": "branch.rb",
+        "start": 48,
+        "end": 49
+      }
+    ]
+  }
+]

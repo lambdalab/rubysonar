@@ -1,0 +1,130 @@
+[
+  {
+    "ref": {
+      "name": "int",
+      "file": "basic_type.rb",
+      "start": 53,
+      "end": 56
+    },
+    "dests": [
+      {
+        "name": "int",
+        "file": "basic_type.rb",
+        "start": 0,
+        "end": 3
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "str",
+      "file": "basic_type.rb",
+      "start": 57,
+      "end": 60
+    },
+    "dests": [
+      {
+        "name": "str",
+        "file": "basic_type.rb",
+        "start": 16,
+        "end": 19
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "float",
+      "file": "basic_type.rb",
+      "start": 69,
+      "end": 74
+    },
+    "dests": [
+      {
+        "name": "float",
+        "file": "basic_type.rb",
+        "start": 6,
+        "end": 11
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "h",
+      "file": "basic_type.rb",
+      "start": 62,
+      "end": 63
+    },
+    "dests": [
+      {
+        "name": "h",
+        "file": "basic_type.rb",
+        "start": 45,
+        "end": 46
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "int",
+      "file": "basic_type.rb",
+      "start": 64,
+      "end": 67
+    },
+    "dests": [
+      {
+        "name": "int",
+        "file": "basic_type.rb",
+        "start": 0,
+        "end": 3
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "h",
+      "file": "basic_type.rb",
+      "start": 79,
+      "end": 80
+    },
+    "dests": [
+      {
+        "name": "h",
+        "file": "basic_type.rb",
+        "start": 45,
+        "end": 46
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "int",
+      "file": "basic_type.rb",
+      "start": 81,
+      "end": 84
+    },
+    "dests": [
+      {
+        "name": "int",
+        "file": "basic_type.rb",
+        "start": 0,
+        "end": 3
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "db",
+      "file": "basic_type.rb",
+      "start": 166,
+      "end": 168
+    },
+    "dests": [
+      {
+        "name": "db",
+        "file": "basic_type.rb",
+        "start": 151,
+        "end": 153
+      }
+    ]
+  }
+]

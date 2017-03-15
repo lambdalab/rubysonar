@@ -1,0 +1,178 @@
+[
+  {
+    "ref": {
+      "name": "x",
+      "file": "method.rb",
+      "start": 18,
+      "end": 19
+    },
+    "dests": [
+      {
+        "name": "x",
+        "file": "method.rb",
+        "start": 8,
+        "end": 9
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "y",
+      "file": "method.rb",
+      "start": 127,
+      "end": 128
+    },
+    "dests": [
+      {
+        "name": "y",
+        "file": "method.rb",
+        "start": 111,
+        "end": 112
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "x",
+      "file": "method.rb",
+      "start": 153,
+      "end": 154
+    },
+    "dests": [
+      {
+        "name": "x",
+        "file": "method.rb",
+        "start": 143,
+        "end": 144
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "x",
+      "file": "method.rb",
+      "start": 189,
+      "end": 190
+    },
+    "dests": [
+      {
+        "name": "x",
+        "file": "method.rb",
+        "start": 143,
+        "end": 144
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "fac",
+      "file": "method.rb",
+      "start": 191,
+      "end": 194
+    },
+    "dests": [
+      {
+        "name": "fac",
+        "file": "method.rb",
+        "start": 139,
+        "end": 142
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "x",
+      "file": "method.rb",
+      "start": 195,
+      "end": 196
+    },
+    "dests": [
+      {
+        "name": "x",
+        "file": "method.rb",
+        "start": 143,
+        "end": 144
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "x",
+      "file": "method.rb",
+      "start": 231,
+      "end": 232
+    },
+    "dests": [
+      {
+        "name": "x",
+        "file": "method.rb",
+        "start": 221,
+        "end": 222
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "rec",
+      "file": "method.rb",
+      "start": 272,
+      "end": 275
+    },
+    "dests": [
+      {
+        "name": "rec",
+        "file": "method.rb",
+        "start": 217,
+        "end": 220
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "x",
+      "file": "method.rb",
+      "start": 276,
+      "end": 277
+    },
+    "dests": [
+      {
+        "name": "x",
+        "file": "method.rb",
+        "start": 221,
+        "end": 222
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "foo",
+      "file": "method.rb",
+      "start": 311,
+      "end": 314
+    },
+    "dests": [
+      {
+        "name": "foo",
+        "file": "method.rb",
+        "start": 4,
+        "end": 7
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "x",
+      "file": "method.rb",
+      "start": 315,
+      "end": 316
+    },
+    "dests": [
+      {
+        "name": "x",
+        "file": "method.rb",
+        "start": 304,
+        "end": 305
+      }
+    ]
+  }
+]
