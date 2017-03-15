@@ -22,15 +22,26 @@
     <!-- jackson -->
     <dependencies>
         <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.2.4</version>
         </dependency>
-
         <dependency>
             <groupId>com.intellij</groupId>
             <artifactId>annotations</artifactId>
             <version>5.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>15.0</version>
         </dependency>
 
         <!-- the core, which includes Streaming API, shared low-level abstractions (but NOT data-binding) -->

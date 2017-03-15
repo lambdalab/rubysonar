@@ -3,6 +3,7 @@ package org.yinwang.rubysonar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.yinwang.rubysonar.ast.Dummy;
 import org.yinwang.rubysonar.ast.Node;
 
@@ -210,7 +211,8 @@ public class Test {
     // ------------------------- static part -----------------------
 
 
-    public static void testAll(String path, boolean exp) {
+    @Nullable
+    public static List<String> testAll(String path, boolean exp) {
         List<String> failed = new ArrayList<>();
         if (exp) {
             $.testmsg("generating tests");
@@ -222,15 +224,14 @@ public class Test {
 
         if (exp) {
             $.testmsg("all tests generated");
+            return null;
         } else if (failed.isEmpty()) {
             $.testmsg("all tests passed!");
+            return null;
         } else {
-            $.testmsg("failed some tests: ");
-            for (String f : failed) {
-                $.testmsg("  * " + f);
+            return failed;
             }
         }
-    }
 
 
     public static void testRecursive(String path, boolean exp, List<String> failed) {
