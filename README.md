@@ -50,11 +50,25 @@ command line:
 This will take a few minutes. You should find some interactive HTML files inside
 the _html_ directory after this process.
 
+### Test
 
+For development, you can run the unit tests. RubySonar now has a test framework. You can run the
+tests using this command:
+
+    mvn test
+
+If you modify the code or tests, you need to generate new expected results. Run these command lines:
+
+    mvn package -DskipTests
+    java -classpath target/rubysonar-<version>.jar org.yinwang.rubysonar.Test -generate tests
+
+To write new tests, you just need to write relevant Ruby files, put them into a directory named 
+`tests/testname.test`(test directory name must end with ".test"). Please look at the `tests` 
+directory for examples.
 
 #### License (BSD Style)
 
-PySonar - a type inferencer and indexer for Python
+RubySonar - a type inferencer and indexer for Ruby
 
 Copyright (c) 2013-2016 Yin Wang
 

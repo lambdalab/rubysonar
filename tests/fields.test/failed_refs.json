@@ -1,0 +1,16 @@
+[
+  {
+    "ref": {
+      "file": "test1.rb",
+      "start": 55.0,
+      "end": 57.0
+    },
+    "dests": [
+      {
+        "file": "test1.rb",
+        "start": 38.0,
+        "end": 40.0
+      }
+    ]
+  }
+]
