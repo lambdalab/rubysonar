@@ -72,6 +72,7 @@
     },
     "dests": [
       {
+        "name": "x",
         "file": "test1.rb",
         "start": 29,
         "end": 31

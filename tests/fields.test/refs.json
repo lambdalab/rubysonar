@@ -33,6 +33,7 @@
   },
   {
     "ref": {
+      "name": "x",
       "file": "test1.rb",
       "start": 55,
       "end": 57
@@ -40,8 +41,8 @@
     "dests": [
       {
         "file": "test1.rb",
-        "start": 38,
-        "end": 40
+        "start": 81,
+        "end": 82
       }
     ]
   },
@@ -70,6 +71,7 @@
     },
     "dests": [
       {
+        "name": "x",
         "file": "test1.rb",
         "start": 38,
         "end": 40
@@ -133,6 +135,7 @@
     },
     "dests": [
       {
+        "name": "data",
         "file": "test2.rb",
         "start": 38,
         "end": 43
@@ -141,12 +144,14 @@
   },
   {
     "ref": {
+      "name": "data",
       "file": "test2.rb",
       "start": 75,
       "end": 80
     },
     "dests": [
       {
+        "name": "data",
         "file": "test2.rb",
         "start": 38,
         "end": 43
