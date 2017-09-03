@@ -4,11 +4,14 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.yinwang.rubysonar.*;
 import org.yinwang.rubysonar.ast.Node;
+import org.yinwang.rubysonar.types.Type;
+import org.yinwang.rubysonar.types.UnionType;
 
 import java.io.File;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 
 /**
@@ -142,11 +145,8 @@ class Linker {
             Style link = new Style(Style.Type.LINK, ref.start, ref.end);
             link.id = qname;
 
-            List<String> typings = new ArrayList<>();
-            for (Binding b : bindings) {
-                typings.add(b.type.toString());
-            }
-            link.message = $.joinWithSep(typings, " | ", "{", "}");
+            List<Type> types = bindings.stream().map(b -> b.type).collect(Collectors.toList());
+            link.message = UnionType.Union(types).toString();
 
             // Currently jump to the first binding only. Should change to have a
             // hover menu or something later.
