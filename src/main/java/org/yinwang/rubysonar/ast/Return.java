@@ -12,6 +12,9 @@ public class Return extends Node {
 
     public Return(Node n, String file, int start, int end) {
         super(file, start, end);
+        if(n instanceof Array && ((Array) n).elts.size() == 1) {
+            n = ((Array) n).elts.get(0);
+        }
         this.value = n;
         addChildren(n);
     }
