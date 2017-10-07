@@ -3,9 +3,8 @@ package org.yinwang.rubysonar.types;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class UnionType extends Type {
@@ -47,7 +46,7 @@ public class UnionType extends Type {
         if (t1 instanceof UnionType) {
             Set<Type> types = new HashSet<>(((UnionType) t1).types);
             types.remove(t2);
-            return UnionType.newUnion(types);
+            return UnionType.Union(types);
         } else if (t1 == t2) {
             return Type.UNKNOWN;
         } else {
@@ -57,7 +56,7 @@ public class UnionType extends Type {
 
 
     @NotNull
-    static public Type newUnion(@NotNull Collection<Type> types) {
+    static public Type Union(@NotNull Collection<Type> types) {
         Type t = Type.UNKNOWN;
         for (Type nt : types) {
             t = union(t, nt);
@@ -169,16 +168,10 @@ public class UnionType extends Type {
             sb.append("#").append(num);
         } else {
             int newNum = ctr.push(this);
-            boolean first = true;
+            List<String> typeStrings = types.stream().map(x->x.printType(ctr)).collect(Collectors.toList());
+            Collections.sort(typeStrings);
             sb.append("{");
-
-            for (Type t : types) {
-                if (!first) {
-                    sb.append(" | ");
-                }
-                sb.append(t.printType(ctr));
-                first = false;
-            }
+            sb.append(String.join(" | ", typeStrings));
 
             if (ctr.isUsed(this)) {
                 sb.append("=#").append(newNum).append(":");
