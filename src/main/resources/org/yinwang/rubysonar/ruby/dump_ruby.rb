@@ -673,6 +673,12 @@ class AstSimplifier
               :value => exp[1],
               :location => exp[2]
           }
+        when :@rational
+          {
+              :type => :rational,
+              :value => exp[1],
+              :location => exp[2]
+          }
         when :regexp_literal
           regexp = convert(exp[1])
           regexp[:regexp_end] = convert(exp[2])

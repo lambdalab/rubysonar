@@ -446,6 +446,11 @@ public class Parser {
             return new RbFloat(n, file, start, end);
         }
 
+        if (type.equals("rational")) {
+            String n = (String) map.get("value");
+            return new RbRational(n, file, start, end);
+        }
+
         $.die("[please report parser bug]: unexpected ast node: " + type);
         return null;
     }
