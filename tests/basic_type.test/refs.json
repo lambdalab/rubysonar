@@ -113,17 +113,81 @@
   },
   {
     "ref": {
+      "name": "int",
+      "file": "basic_type.rb",
+      "start": 103,
+      "end": 106
+    },
+    "dests": [
+      {
+        "name": "int",
+        "file": "basic_type.rb",
+        "start": 0,
+        "end": 3
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "str",
+      "file": "basic_type.rb",
+      "start": 107,
+      "end": 110
+    },
+    "dests": [
+      {
+        "name": "str",
+        "file": "basic_type.rb",
+        "start": 16,
+        "end": 19
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "rational",
+      "file": "basic_type.rb",
+      "start": 111,
+      "end": 119
+    },
+    "dests": [
+      {
+        "name": "rational",
+        "file": "basic_type.rb",
+        "start": 86,
+        "end": 94
+      }
+    ]
+  },
+  {
+    "ref": {
+      "name": "x",
+      "file": "basic_type.rb",
+      "start": 165,
+      "end": 166
+    },
+    "dests": [
+      {
+        "name": "x",
+        "file": "basic_type.rb",
+        "start": 147,
+        "end": 148
+      }
+    ]
+  },
+  {
+    "ref": {
       "name": "db",
       "file": "basic_type.rb",
-      "start": 166,
-      "end": 168
+      "start": 196,
+      "end": 198
     },
     "dests": [
       {
         "name": "db",
         "file": "basic_type.rb",
-        "start": 151,
-        "end": 153
+        "start": 181,
+        "end": 183
       }
     ]
   }
