@@ -7,10 +7,14 @@ h={}
 a=[int,str]
 h[int]=float
 res=h[int]
+rational = 2r
+a=[int,str,rational]
 
+def test_rational(x)
+    x = 2r
+    return x
+end
 
-#mistake Hash for array
-#implemented right in pysonar
 def dict(db)
     return db["str"]
 end
